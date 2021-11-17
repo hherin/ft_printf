@@ -1,20 +1,21 @@
 CC	= gcc
 
+HDRS = inc/ft_printf.h \
+		inc/macro.h \
+		inc/libft.h 
+
 RM	= rm -f
 
 NAME	= libftprintf.a
 
-MANDATORY = 	./lib/ft_memset.c\
-				./lib/ft_write.c\
-				./lib/ft_strlen.c\
-				./lib/ft_strncpy.c\
-				./lib/ft_atoi.c\
-				./lib/ft_calloc.c\
-				./lib/ft_substr.c\
-				./lib/ft_itoa_base.c\
-				./lib/ft_unitoa_base.c\
-				./lib/ft_itoahexa.c\
-				./lib/ft_strjoin.c\
+MANDATORY = 	./lib/alloc_string.c\
+				./lib/converter.c\
+				./lib/ft_put_fd.c\
+				./lib/is_type.c\
+				./lib/list.c\
+				./lib/memstr.c\
+				./lib/stringh.c\
+				./lib/strsearch.c\
 				./src/type/ft_type_pourcent.c\
 				./src/type/ft_typeC.c\
 				./src/type/ft_typeD.c\
@@ -34,9 +35,12 @@ MANDATORY_OBJS	= ${MANDATORY_SRCS:.c=.o}
 
 CFLAGS	= -g -Wall -Wextra -Werror
 
+${MANDATORY_OBJS}: ${HDRS}
+
 ${NAME}: ${MANDATORY_OBJS}
 			ar rc ${NAME} ${MANDATORY_OBJS}
 			ranlib ${NAME}
+
 
 all: ${NAME}
 
