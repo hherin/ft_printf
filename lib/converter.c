@@ -121,10 +121,7 @@ char					*ft_unitoa_base(unsigned int n, char *base)
 	p[length] = '\0';
 	while (length)
 	{
-		if (n < 0)
-			p[--length] = base[n % size];
-		else
-			p[--length] = base[n % size];
+		p[--length] = base[n % size];
 		n = n / size;
 	}
 	return (p);

@@ -35,10 +35,9 @@ MANDATORY_OBJS	= ${MANDATORY_SRCS:.c=.o}
 
 CFLAGS	= -g -Wall -Wextra -Werror
 
-${MANDATORY_OBJS}: ${HDRS}
 
 ${NAME}: ${MANDATORY_OBJS}
-			ar rc ${NAME} ${MANDATORY_OBJS}
+			ar -cvq ${NAME} ${MANDATORY_OBJS}
 			ranlib ${NAME}
 
 
