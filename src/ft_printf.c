@@ -23,7 +23,7 @@
 	return tmp2;
 }
 
-static char *get_variable(char str, s_print *tab, s_option opt, va_list ap)
+char *get_variable(char str, s_print *tab, s_option opt, va_list ap)
 {
 	size_t j;
 	char *tmp;
@@ -34,7 +34,7 @@ static char *get_variable(char str, s_print *tab, s_option opt, va_list ap)
 	{
 		if (tab[j].c == str)
 			if (!(tmp = tab[j].function(ap, opt)))
-				return (0);
+				break;
 		j++;
 	}
 	return (tmp);
@@ -56,10 +56,13 @@ static int ft_finalprint(va_list ap, char *str, s_print *tab)
 		{
 			str++;
 			opt = get_options(ap, &str);
-			tmp = get_variable(*str++, tab, opt, ap);
-			ft_strlcpy(buffer + idx, tmp, ft_strlen(tmp) + 1);
-			idx += ft_strlen(tmp);
-			free(tmp);
+			printf("str %s\n", str);
+			(void)opt;
+			tmp = get_variable(*str, tab, opt, ap);
+			printf("add tmp %p\n", tmp);
+			// ft_strlcpy(buffer + idx, tmp, ft_strlen(tmp) + 1);
+			// idx += ft_strlen(tmp);
+			// free(tmp);
 		}
 		else
 			buffer[idx++] = *str++;

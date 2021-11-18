@@ -2,6 +2,7 @@
 
 int main(void)
 {
-	ft_printf("%s yoyo %d\n", "hello", 18);
+	ft_printf("%c", 'g');
+	printf("Reel\n%.2c", 'g');
 	return 0;
 }
