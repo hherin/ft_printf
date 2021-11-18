@@ -6,7 +6,7 @@
 /*   By: lucaslefrancq <lucaslefrancq@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:24:58 by hherin            #+#    #+#             */
-/*   Updated: 2021/11/16 17:58:24 by lucaslefran      ###   ########.fr       */
+/*   Updated: 2021/11/18 14:42:37 by lucaslefran      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ static int		get_width(char **str, va_list ap)
 	int	ret;
 
 	ret = 0;
-	if (FT_ISDIGIT(**str))
-	{
+	if (FT_ISDIGIT(**str)) {
 		ret = ft_atoi(*str);
 		while (FT_ISDIGIT(**str))
 			(*str)++;
 	}
-	else if (**str == '*')
-	{
+	else if (**str == '*') {
 		ret = va_arg(ap, int);
 		(*str)++;
 	}
@@ -60,18 +58,15 @@ static int		get_precision(char **str, va_list ap)
 	int	ret;
 
 	ret = -1;
-	if (**str == '.')
-	{
+	if (**str == '.') {
 		(*str)++;
 		ret = 0;
-		if (FT_ISDIGIT(**str))
-		{
+		if (FT_ISDIGIT(**str)) {
 			ret = ft_atoi(*str);
 			while (FT_ISDIGIT(**str))
 				(*str)++;
 		}
-		if (**str == '*')
-		{
+		if (**str == '*') {
 			ret = va_arg(ap, int);
 			(*str)++;
 		}

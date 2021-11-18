@@ -6,22 +6,11 @@
 /*   By: lucaslefrancq <lucaslefrancq@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:25:03 by hherin            #+#    #+#             */
-/*   Updated: 2021/11/17 15:32:35 by lucaslefran      ###   ########.fr       */
+/*   Updated: 2021/11/18 14:41:41 by lucaslefran      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_printf.h"
-
- char *ft_joins(char *begin, char *end, char *s2)
-{
-	char *tmp;
-	char *tmp2;
-
-	tmp = ft_substr(begin, 0, end - begin);
-	tmp2 = ft_strjoin(s2, tmp);
-	free(tmp);
-	return tmp2;
-}
 
 char *get_variable(char str, s_print *tab, s_option opt, va_list ap)
 {
@@ -50,19 +39,14 @@ static int ft_finalprint(va_list ap, char *str, s_print *tab)
 	char *tmp = NULL;
 
 	ft_bzero(buffer, BUFFER_SIZE);
-	while (*str && idx < BUFFER_SIZE)
-	{
-		if (*str == '%')
-		{
+	while (*str && idx < BUFFER_SIZE) {
+		if (*str == '%') {
 			str++;
 			opt = get_options(ap, &str);
-			printf("str %s\n", str);
-			(void)opt;
-			tmp = get_variable(*str, tab, opt, ap);
-			printf("add tmp %p\n", tmp);
-			// ft_strlcpy(buffer + idx, tmp, ft_strlen(tmp) + 1);
-			// idx += ft_strlen(tmp);
-			// free(tmp);
+			tmp = get_variable(*str++, tab, opt, ap);
+			ft_strlcpy(buffer + idx, tmp, ft_strlen(tmp) + 1);
+			idx += ft_strlen(tmp);
+			free(tmp);
 		}
 		else
 			buffer[idx++] = *str++;
@@ -70,7 +54,6 @@ static int ft_finalprint(va_list ap, char *str, s_print *tab)
 	ft_putstr(buffer);
 	ret += idx;
 	return (*str) ? ft_finalprint(ap, str, tab) : ret;
-
 }
 
 int ft_printf(const char *format, ...)
@@ -82,7 +65,6 @@ int ft_printf(const char *format, ...)
 
 	tab = ft_struct_printf();
 	ret = ft_finalprint(ap, (char*)format, tab);
-	printf("ret %d\n", ret);
 	free(tab);
 	va_end(ap);
 	return (ret);
