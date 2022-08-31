@@ -6,7 +6,7 @@
 /*   By: lucaslefrancq <lucaslefrancq@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:25:03 by hherin            #+#    #+#             */
-/*   Updated: 2021/11/18 14:41:41 by lucaslefran      ###   ########.fr       */
+/*   Updated: 2022/07/27 20:33:29 by lucaslefran      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ char *get_variable(char str, s_print *tab, s_option opt, va_list ap)
 	}
 	return (tmp);
 }
-
-#include <stdio.h>
 
 static int ft_finalprint(va_list ap, char *str, s_print *tab)
 {
